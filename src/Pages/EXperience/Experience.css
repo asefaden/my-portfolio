@@ -1,0 +1,98 @@
+.experience-container {
+  margin: 0 auto;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  line-height: 2;
+  color: #333;
+  background-color: #f4f4f4;
+}
+.experience-logo {
+    width: 30px;
+    height: 30px;
+    margin: 20px;
+    vertical-align: middle;
+    border-radius: 50%;
+    float: left;
+    background: linear-gradient(45deg, #1682f6,#09f568);
+}
+.experience {
+  background-color: #e3e5e8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+  border-left: #1682f6 3px solid;
+}
+.experience h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+.experience h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: left;
+  color: #1682f6;
+}
+.experience span {
+  font-size: 15px;
+  color: #1682f6;
+  font-weight: bold;
+  vertical-align: super;
+  cursor: pointer;
+  transition: color 0.3s;
+  text-align: center;
+    margin-left: 500px;
+}
+.experience p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+.experience ul {
+  list-style-type: square;
+  margin-left: 20px;
+}
+.experience li {
+    margin-bottom: 10px;
+    margin-left: 80px;
+    padding-left: 10px;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    text-align: justify;
+    transition: color 0.3s;
+}
+
+@media (max-width: 600px) {
+  .experience-container {
+    padding: 10px;
+  }
+  .experience {
+    padding: 10px;
+  } 
+  .experience h1 {
+    font-size: 22px;
+  }
+  .experience h2 {
+    font-size: 20px;
+  }
+  .experience span {
+    font-size: 14px;
+  }
+  .experience p {
+    font-size: 16px;
+  }
+  .experience li {
+    font-size: 14px;
+    margin-left: 20px;
+    padding-left: 5px;
+  }
+  .experience ul {
+    margin-left: 10px;
+  }
+  .experience span {
+    margin-left: 0;
+  }
+}

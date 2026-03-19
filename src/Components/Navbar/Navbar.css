@@ -1,0 +1,229 @@
+/* Navbar.css — improved touch targets, safe-area support, and Android-friendly rules */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* include safe-area insets for notches (Android & iOS) */
+  padding: min(1vw, 10px) calc(5% + env(safe-area-inset-right)) min(1vw, 10px)
+    calc(5% + env(safe-area-inset-left));
+  background: linear-gradient(to right, #010802, #3b3be7, #0ba4d7);
+  color: white;
+  font-family: Arial, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 56px; /* ensures a comfortable tap area */
+  touch-action: manipulation; /* improves touch responsiveness */
+  -webkit-tap-highlight-color: transparent; /* removes highlight on Android */
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+}
+.header h3 {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: semi-bold;
+  position: absolute;
+  align-items: center;
+  margin-left: 0;
+  padding-left: 0;
+  left: 66px;
+}
+.navbar ul {
+  list-style: none;
+  justify-content: center;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  flex-grow: 1;
+}
+
+/* list items act as large tappable regions */
+.navbar li {
+  margin-right: 20px;
+  font-size: clamp(12px, 1.5vw, 20px);
+  font-weight: bold;
+  transition: color 0.18s ease;
+  cursor: pointer;
+  padding: min(0.6vw, 8px) min(1vw, 12px);
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-height: 48px; /* Android touch target guideline */
+  border-radius: 10px;
+}
+
+/* Prefer active/focus feedback on touch devices rather than hover */
+.navbar li:active,
+.navbar li:focus,
+.navbar li:focus-visible,
+.navbar li.focus-visible {
+  color: #09f568;
+  outline: none;
+}
+
+/* Keep hover for pointer devices only */
+@media (hover: hover) and (pointer: fine) {
+  .navbar li:hover {
+    color: #09f568;
+  }
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.18s ease;
+  cursor: pointer;
+  padding: min(0.6vw, 8px) min(1vw, 12px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 48px;
+  border: 1px solid transparent;
+  border-radius: 10px; /* more comfortable than 50% on small screens */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navbar a:active,
+.navbar a:focus {
+  color: #09f568;
+  outline: none;
+}
+
+.navbar button {
+  background: linear-gradient(to right, #010802, #3b3be7, #0ba4d7);
+  color: white;
+  border: none;
+  padding: min(0.6vw, 8px) min(1vw, 12px);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: clamp(12px, 1.5vw, 20px);
+  right: 0;
+  position: absolute;
+  font-weight: bold;
+  transition: background-color 0.18s ease, transform 0.12s ease;
+  height: 48px;
+  min-width: 96px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.18);
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.22));
+    transition: transform .35s cubic-bezier(.22,.9,.32,1), box-shadow .35s, filter .35s;
+    cursor: pointer;
+    will-change: transform, filter;
+    animation: logo-float 4s ease-in-out infinite, logo-glow 4s ease-in-out infinite;
+}
+
+.navbar button:active {
+  transform: translateY(1px);
+  background-color: #07c04a;
+  border: 1px solid #9c9d9d;
+}
+
+/* Dark nav variant keeps gradient but transitions smoothly */
+.dark-nav {
+  background: linear-gradient(to right, #3b3be7, #0ba4d7, #010802);
+  transition: 0.5s;
+}
+/* Responsive: smaller screens and touch-only devices */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: min(1vw, 6px) calc(3% + env(safe-area-inset-right)) min(1vw, 6px)
+      calc(3% + env(safe-area-inset-left));
+    z-index: 100;
+    flex-shrink: calc(3%+env(safe-area-inset-left));
+    flex-basis: auto;
+  }
+  .navbar ul {
+    display: flex;
+    justify-content: flex-start;
+    scroll-behavior: scroll;
+    padding: min(1vw, 2px);
+    gap: 2px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .navbar {
+    height: 80px;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar ul {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: flex-start;
+    background: linear-gradient(to bottom, #3b3be7, #0ba4d7, #010802);
+    padding: 20px;
+    left: 0;
+    top: 80px;
+    width: min(70vw, 85%);
+    height: 100vh;
+    z-index: 100;
+    /* directional "blur" to the right using offset shadows */
+    box-shadow: 60px 0 120px rgba(0, 0, 0, 0.25), 120px 0 240px rgba(11, 164, 215, 0.10);
+    filter: blur(12%);
+    border-top-right-radius: 10px;
+    transition: 0.3s ease-in-out;
+    transform: translateX(0);
+    overflow: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .navbar li {
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: bold;
+    transition: color 1.18s ease 1111ms;
+    list-style: square;
+  }
+  .navbar li:hover {
+    color: #09f568;
+    border-bottom: 1px solid #09f568;
+    outline: none;
+  }
+  .navbar li:active,
+  .navbar li:focus {
+    color: #09f568;
+    outline: none;
+    cursor: none;
+  }
+  .navbar .hide-menu {
+    transition: translateX(-100%);
+    transform: rotateZ("angle");
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+    
+  }
+  .navbar .hide-menu li{
+    pointer-events: none;
+    display: none;
+  }
+}
